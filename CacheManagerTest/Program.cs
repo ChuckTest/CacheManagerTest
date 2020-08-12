@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace CacheManagerTest
 {
@@ -10,6 +7,21 @@ namespace CacheManagerTest
     {
         static void Main(string[] args)
         {
+            try
+            {
+                var builder = new ConfigurationBuilder().AddJsonFile("cache.json");
+                var configurationRoot = builder.Build();
+                var cacheConfiguration = configurationRoot.GetCacheConfiguration();
+                Console.WriteLine($"MaxRetries = {cacheConfiguration.MaxRetries}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
         }
     }
 }
