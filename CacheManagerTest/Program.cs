@@ -11,7 +11,7 @@ namespace CacheManagerTest
         private static string cacheName1 = "test1";
         private static string cacheName2 = "test2";
 
-        private static Dictionary<string, ICacheManager<object>> dictionary =
+        private static readonly Dictionary<string, ICacheManager<object>> dictionary =
             new Dictionary<string, ICacheManager<object>>();
 
         static void Main(string[] args)
@@ -73,12 +73,12 @@ namespace CacheManagerTest
 
         static void Test3()
         {
-            var cache1 = dictionary[cacheName1];
-            var valueB = cache1.Get("KeyB");
+            var cache1 = dictionary[cacheName1]; 
+            var valueB = cache1.Get("keyB");
             Console.WriteLine($"KeyB is {valueB}"); // should be 42
 
             var cache2 = dictionary[cacheName2];
-            var valueD = cache2.Get("KeyD");
+            var valueD = cache2.Get("keyD");
             Console.WriteLine($"KeyD is {valueD}"); // should be 24
         }
     }
